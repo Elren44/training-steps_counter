@@ -1,30 +1,58 @@
 {
-  "expo": {
-    "name": "training_step_counter",
-    "slug": "training_step_counter",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
-  }
+	"expo": {
+		"name": "training_step_counter",
+		"slug": "training_step_counter",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"userInterfaceStyle": "light",
+		"splash": {
+			"image": "./assets/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "com.elren44.training_step_counter"
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			},
+			"package": "com.elren44.training_step_counter",
+			"permissions": [
+				"android.permission.health.READ_STEPS",
+				"android.permission.health.READ_FLOORS_CLIMBED",
+				"android.permission.health.READ_DISTANCE"
+			]
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"plugins": [
+			[
+				"react-native-health",
+				{
+					"isClinicalDataEnabled": true,
+					"healthSharePermission": "Custom health share permission",
+					"healthUpdatePermission": "Custom health update permission",
+					"healthClinicalDescription": "Custom health share permission for clinical data"
+				}
+			],
+			"./androidManifestPlugin.js",
+			[
+				"expo-build-properties",
+				{
+					"android": {
+						"compileSdkVersion": 33,
+						"targetSdkVersion": 33,
+						"buildToolsVersion": "33.0.0",
+						"minSdkVersion": 26
+					}
+				}
+			]
+		]
+	}
 }
