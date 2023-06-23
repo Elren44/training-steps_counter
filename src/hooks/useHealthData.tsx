@@ -21,25 +21,37 @@ const permissions: HealthKitPermissions = {
 };
 
 const useHealthData = (date: Date) => {
-	const [hasPermissions, setHasPermissions] = useState(false);
+	const [hasPermission, setHasPermission] = useState(false);
 	const [steps, setSteps] = useState(0);
 	const [flights, setFlights] = useState(0);
 	const [distance, setDistance] = useState(0);
 
 	useEffect(() => {
-		if (Platform.OS == 'ios') {
+		if (Platform.OS !== 'ios') {
+			return;
+		}
+
+		AppleHealthKit.isAvailable((err, isAvailable) => {
+			if (err) {
+				console.log('Error checking availability');
+				return;
+			}
+			if (!isAvailable) {
+				console.log('Apple Health not available');
+				return;
+			}
 			AppleHealthKit.initHealthKit(permissions, (err) => {
 				if (err) {
-					console.log('Error getting permissions: ', err);
+					console.log('Error getting permissions');
 					return;
 				}
-				setHasPermissions(true);
+				setHasPermission(true);
 			});
-		}
+		});
 	}, []);
 
 	useEffect(() => {
-		if (!hasPermissions) {
+		if (!hasPermission) {
 			return;
 		}
 
@@ -69,7 +81,7 @@ const useHealthData = (date: Date) => {
 			}
 			setDistance(results.value);
 		});
-	}, [hasPermissions]);
+	}, [hasPermission]);
 
 	return {
 		steps,
