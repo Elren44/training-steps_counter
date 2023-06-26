@@ -3,6 +3,7 @@ export interface ColorsType {
 	text: string;
 	white: string;
 	accent: string;
+	accent2: string;
 }
 
 export const colors: ColorsType = {
@@ -10,4 +11,5 @@ export const colors: ColorsType = {
 	text: '#AFB3BE',
 	white: 'white',
 	accent: '#EE0F55',
+	accent2: '#C3FF53',
 };
