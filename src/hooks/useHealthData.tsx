@@ -1,20 +1,15 @@
-import { View, Text, Platform } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { Platform } from 'react-native';
+import { useEffect, useState } from 'react';
 import {
 	HealthInputOptions,
 	HealthKitPermissions,
-	HealthPermission,
 	HealthUnit,
-	HealthValue,
 } from 'react-native-health';
 import AppleHealthKit from 'react-native-health';
 import {
 	initialize,
 	requestPermission,
 	readRecords,
-	insertRecords,
-	aggregateRecord,
-	readRecord,
 } from 'react-native-health-connect';
 import { TimeRangeFilter } from 'react-native-health-connect/lib/typescript/types/base.types';
 
@@ -108,20 +103,9 @@ const useHealthData = (date: Date) => {
 		const timeRangeFilter: TimeRangeFilter = {
 			operator: 'between',
 			startTime: new Date(date.setHours(0, 0, 0, 0)).toISOString(),
-			// startTime: '2023-06-26T01:00:00.405Z',
 			endTime: new Date(date.setHours(23, 59, 59, 999)).toISOString(),
-			// endTime: '2023-06-26T11:59:59.405Z',
 		};
 
-		// const steps = await readRecords('Steps', {
-		// 	timeRangeFilter: {
-		// 		operator: 'between',
-		// 		startTime: '2023-06-26T03:00:00.405Z',
-		// 		endTime: '2023-06-26T04:59:59.405Z',
-		// 	},
-		// });
-		// console.log(steps);
-		//
 		// Steps
 		const steps = await readRecords('Steps', { timeRangeFilter });
 		const totalSteps = steps.reduce((sum, cur) => sum + cur.count, 0);
@@ -146,29 +130,6 @@ const useHealthData = (date: Date) => {
 		setFlights(totalFloors);
 		// console.log(floorsClimbed);
 	};
-
-	// const setStepsData = async () => {
-	// 	const isInitialized = await initialize();
-	// 	if (!isInitialized) return;
-
-	// 	const grantedPermissions = await requestPermission([
-	// 		{ accessType: 'write', recordType: 'Steps' },
-	// 	]);
-
-	// 	const insertSampleData = () => {
-	// 		insertRecords([
-	// 			{
-	// 				recordType: 'Steps',
-	// 				count: 6200,
-	// 				startTime: '2023-06-26T03:00:00.405Z',
-	// 				endTime: '2023-06-26T04:59:59.405Z',
-	// 			},
-	// 		]).then((ids) => {
-	// 			console.log('Records inserted ', { ids }); // Records inserted  {"ids": ["06bef46e-9383-4cc1-94b6-07a5045b764a", "a7bdea65-86ce-4eb2-a9ef-a87e6a7d9df2"]}
-	// 		});
-	// 	};
-	// 	insertSampleData();
-	// };
 
 	useEffect(() => {
 		if (Platform.OS !== 'android') {

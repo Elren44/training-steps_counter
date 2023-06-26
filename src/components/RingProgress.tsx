@@ -1,12 +1,11 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React, { useEffect } from 'react';
 import { colors } from '../config/colors';
-import Svg, { Circle, CircleProps, Rect } from 'react-native-svg';
+import Svg, { Circle, CircleProps } from 'react-native-svg';
 import Animated, {
 	useAnimatedProps,
 	useSharedValue,
 	withSpring,
-	withTiming,
 } from 'react-native-reanimated';
 import { AntDesign } from '@expo/vector-icons';
 

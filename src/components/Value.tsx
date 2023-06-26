@@ -8,7 +8,7 @@ type ValueProps = {
 
 const Value = ({ label, value }: ValueProps) => {
 	return (
-		<View>
+		<View style={{ width: '40%' }}>
 			<Text style={styles.label}>{label}</Text>
 			<Text style={styles.value}>{value}</Text>
 		</View>
