@@ -16,7 +16,7 @@ import useHealthData from './src/hooks/useHealthData';
 
 const STEPS_GOAL = 10_000;
 export default function App() {
-	const { steps, flights, distance } = useHealthData(new Date());
+	const { steps, flights, distance } = useHealthData(new Date(2023, 5, 26));
 
 	return (
 		<View style={styles.container}>

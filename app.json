@@ -24,6 +24,7 @@
 			"package": "com.elren44.training_step_counter",
 			"permissions": [
 				"android.permission.health.READ_STEPS",
+				"android.permission.health.WRITE_STEPS",
 				"android.permission.health.READ_FLOORS_CLIMBED",
 				"android.permission.health.READ_DISTANCE"
 			]
@@ -42,6 +43,7 @@
 				}
 			],
 			"./androidManifestPlugin.js",
+
 			[
 				"expo-build-properties",
 				{
